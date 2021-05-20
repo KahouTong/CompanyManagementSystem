@@ -1,0 +1,106 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+
+  form.normal-form{
+    max-width: auto;
+    margin: 10px auto;
+}
+
+.mat-form-field{
+  width: 100% ;
+}
+
+@media screen and (min-width: 480px) {
+  
+  form {
+    max-width: 480px;
+  }
+
+}
+
+input,
+textarea{
+  margin: 0;
+  outline: 0;
+  width: 100%;
+  padding: 5px;
+}
+
+textarea{
+  min-height: 5em;
+}
+
+
+
+.Row {
+  display: table;
+  width: 100%; /*Optional*/
+  table-layout: fixed; /*Optional*/
+  border-spacing: 15px; /*Optional*/
+}
+.Column {
+  display: table-cell;
+}
+
+    .add-bottom-padding{
+        padding-bottom: 10px;
+    }
+
+.button-row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  .hide{
+    display: none;
+}
+
+/* mat-table */
+mat-footer-row mat-footer-cell{
+    justify-content: center;
+    font-style: italic;
+}
+
+/* filter controls */
+.search-div{
+    margin: 10px;
+      }
+      .search-form-field{
+          width: 60%;
+          margin-left: 10px;
+          padding: 5px 10px;
+          background-color: #f5f5f5;
+          border-radius: 5px;
+          }
+          .search-form-field div.mat-form-field-underline {
+              display: none;
+          }
+          .search-form-field div.mat-form-field-infix{
+              border-top: 0px;
+          }
+          .search-form-field div.mat-form-field-wrapper{
+            padding-bottom: 0px;
+        }
+        .search-form-field div.mat-form-field-suffix button{
+            height: 32px;
+            width: 32px;
+        }
+
+        /* for dialog pop-up */
+  .btn-dialog-close{
+    width: 45px;
+    min-width: 0px !important;
+    height: 40px;
+    padding: 0px !important;
+  }
+
+  .button-row button{
+    margin: 5px;
+}

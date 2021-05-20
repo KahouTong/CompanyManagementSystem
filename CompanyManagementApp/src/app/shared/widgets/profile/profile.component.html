@@ -1,0 +1,30 @@
+<mat-toolbar>
+    <span>Profile Details</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar>
+  <form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+    <div class="Row">
+    <input type="hidden" formControlName="employeeid">
+    <mat-form-field>
+      <input formControlName="employeename" matInput placeholder="Username*">
+      <mat-error>This field is mandatory.</mat-error>
+    </mat-form-field>
+    </div>
+    <div class="Row">
+    <mat-form-field>
+      <input formControlName="email" matInput placeholder="Email*">
+    </mat-form-field>
+    </div>
+    <div class="Row">
+    <mat-form-field>
+      <input formControlName="password" matInput placeholder="Password*" type="password">
+    </mat-form-field>
+  </div>
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+      <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+    </div>
+  </form>

@@ -1,0 +1,52 @@
+<mat-toolbar>
+  <span>{{service.form.controls['activityid'].value?"Modify Form":"Activity Form"}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+  <div class="Row">
+  <input type="hidden" formControlName="activityid">
+  <mat-form-field>
+    <input formControlName="activityname" matInput placeholder="Activity Name*">
+    <mat-error>This field is mandatory.</mat-error>
+  </mat-form-field>
+  </div>
+  <div class="Row">
+    <div class="Column">
+        <mat-form-field>
+          <input formControlName="estDate" matInput [matDatepicker]="picker" placeholder="Est Date Completed" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="Column">
+        <mat-form-field>
+          <input formControlName="actDate" matInput [matDatepicker]="picker2" placeholder="Actual Date Completed" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+    </div>
+  </div>
+  <div class="Row">
+  <mat-form-field>
+    <textarea formControlName="comment" matInput placeholder="Comment*"></textarea>
+  </mat-form-field>
+  </div>
+  <div class="Row">
+  <mat-form-field>
+    <mat-select formControlName="status" placeholder="Activity Status">
+      <mat-option>None</mat-option>
+      <mat-option value="Completed">Completed</mat-option>
+      <mat-option value="Incomplete">Incomplete</mat-option>
+    </mat-select>
+    <mat-error>This field is mandatory.</mat-error>
+  </mat-form-field>
+</div>
+  <div class="button-row">
+    <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+  </div>
+</form>

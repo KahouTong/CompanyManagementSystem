@@ -1,0 +1,66 @@
+<div class="search-div">
+  <button mat-raised-button (click)="onCreate()">
+    <mat-icon>add</mat-icon>Create
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="activityid">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Activity ID</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.activityid}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="activityname">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Activity Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.activityname}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="estdate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Est Date</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.estdate}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actdate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Act Date</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.actdate}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="comment">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Comment</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.comment}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+      <mat-cell *matCellDef="let element" [ngClass]="{'colorStat' : element.status == 'Incomplete'}">{{element.status}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button (click)="onSelectUpdate(row)">
+          <mat-icon>launch</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="onDelete(row.activityid)">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        Loading data...
+      </mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        No data.
+      </mat-footer-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}">
+    </mat-footer-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+</div>

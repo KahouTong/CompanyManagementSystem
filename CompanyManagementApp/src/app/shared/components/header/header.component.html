@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="toggleSideBar()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <span> Company Management System </span>
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="onProfile()">
+                  <mat-icon>settings</mat-icon>
+                  <span>Profile Setting</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>exit_to_app</mat-icon>
+                  <a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link" mat-icon-button>Sign Out</a>
+                </button>
+              </mat-menu>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
